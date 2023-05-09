@@ -1,7 +1,27 @@
+import { useEffect } from "react";
 import "./App.css";
 import QouteCard from "./components/QouteCard";
 
+const API_URL = "https://api.api-ninjas.com/v1/quotes?category=";
+const API_OPTIONS = {
+  method: "GET",
+  headers: {
+    "X-Api-Key": "9QyYdq5qXDAHyKcUccf5jQ==ReqZOszIw72McvDI",
+    "Content-Type": "application/json",
+  },
+};
+
 function App() {
+  const searchQuotes = async (category: string) => {
+    const response = await fetch(API_URL + category, API_OPTIONS);
+    const data = await response.json();
+
+    console.log(data);
+  };
+  // useEffect(() => {
+  //   searchQuotes("inspirational");
+  // }, []);
+
   return (
     <div className="app">
       <h1>Quote Of The Day</h1>
