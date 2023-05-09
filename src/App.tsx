@@ -1,37 +1,49 @@
-import { useEffect } from "react";
+import { useState } from "react";
 import "./App.css";
+import Key from "./apiKey";
 import QouteCard from "./components/QouteCard";
 
 const API_URL = "https://api.api-ninjas.com/v1/quotes?category=";
 const API_OPTIONS = {
   method: "GET",
   headers: {
-    "X-Api-Key": "9QyYdq5qXDAHyKcUccf5jQ==ReqZOszIw72McvDI",
+    "X-Api-Key": Key,
     "Content-Type": "application/json",
   },
 };
 
 function App() {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [quote, setQuote] = useState({ text: "", author: "" });
+
   const searchQuotes = async (category: string) => {
     const response = await fetch(API_URL + category, API_OPTIONS);
     const data = await response.json();
 
-    console.log(data);
+    setQuote({ text: data[0].quote, author: data[0].author });
   };
-  // useEffect(() => {
-  //   searchQuotes("inspirational");
-  // }, []);
+
+  const handleClick = (text: string) => {
+    searchQuotes(text);
+  };
 
   return (
     <div className="app">
-      <h1>Quote Of The Day</h1>
-      <QouteCard
-        qoute="It's inspirational to see someone who is dying smile."
-        author="Arlen Specter"
-      />
+      <h1>Quotes</h1>
+      {quote.text ? (
+        <QouteCard qoute={quote.text} author={quote.author} />
+      ) : null}
       <div className="searchbar">
-        <input type="text" placeholder="Category of Quote" size={40} />
-        <button type="button">Search</button>
+        <input
+          type="text"
+          value={searchTerm}
+          placeholder="Category of Quote"
+          size={40}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+        <button type="button" onClick={() => handleClick(searchTerm)}>
+          Search
+        </button>
       </div>
     </div>
   );
