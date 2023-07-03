@@ -1,51 +1,25 @@
-import { useState } from "react";
-import "./App.css";
-import Key from "./apiKey";
-import QouteCard from "./components/QouteCard";
-
-const API_URL = "https://api.api-ninjas.com/v1/quotes?category=";
-const API_OPTIONS = {
-  method: "GET",
-  headers: {
-    "X-Api-Key": Key,
-    "Content-Type": "application/json",
-  },
-};
+import { useState } from 'react';
 
 function App() {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [quote, setQuote] = useState({ text: "", author: "" });
+  const [category, setCategory] = useState('');
 
-  const searchQuotes = async (category: string) => {
-    const response = await fetch(API_URL + category, API_OPTIONS);
-    const data = await response.json();
-
-    setQuote({ text: data[0].quote, author: data[0].author });
-  };
-
-  const handleClick = (text: string) => {
-    searchQuotes(text);
+  const clickHandler = () => {
+    return null;
   };
 
   return (
-    <div className="app">
-      <h1>Quotes</h1>
-      {quote.text ? (
-        <QouteCard qoute={quote.text} author={quote.author} />
-      ) : null}
-      <div className="searchbar">
-        <input
-          type="text"
-          value={searchTerm}
-          placeholder="Category of Quote"
-          size={40}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-        <button type="button" onClick={() => handleClick(searchTerm)}>
-          Search
-        </button>
-      </div>
-    </div>
+    <section>
+      <h1>Quotes &apos;R&apos; Us</h1>
+      <input
+        type="text"
+        placeholder="Search by category..."
+        value={category}
+        onChange={(e) => setCategory(e.target.value)}
+      />
+      <button type="button" onClick={clickHandler}>
+        Search
+      </button>
+    </section>
   );
 }
 

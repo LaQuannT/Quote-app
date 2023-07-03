@@ -16,5 +16,6 @@ module.exports = {
   plugins: ['react-refresh', '@typescript-eslint', 'prettier'],
   rules: {
     'react-refresh/only-export-components': 'warn',
+    'react/react-in-jsx-scope': 0,
   },
 };

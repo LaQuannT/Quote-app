@@ -1,15 +1,15 @@
 interface Props {
-  qoute: string;
+  quote: string;
   author: string;
 }
 
-const QouteCard = ({ qoute, author }: Props) => {
+function QuoteCard({ quote, author }: Props) {
   return (
     <div className="quoteCard">
-      <p className="cardText">{qoute}</p>
+      <p className="cardText">{quote}</p>
       <p className="cardAuthor">{author}</p>
     </div>
   );
-};
+}
 
-export default QouteCard;
+export default QuoteCard;
