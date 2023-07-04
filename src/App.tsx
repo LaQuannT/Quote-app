@@ -36,17 +36,26 @@ function App() {
   };
 
   return (
-    <section>
-      <h1>Quotes &apos;R&apos; Us</h1>
-      <input
-        type="text"
-        placeholder="Search by category..."
-        value={category}
-        onChange={(e) => setCategory(e.target.value)}
-      />
-      <button type="button" onClick={handleClick}>
-        Search
-      </button>
+    <section className="flex h-screen flex-col items-center bg-slate-700 ">
+      <div className="relative top-1/4">
+        <h1 className="mb-8 p-5 text-5xl font-semibold text-orange-500">
+          Quotes &apos;R&apos; Us
+        </h1>
+        <input
+          type="text"
+          placeholder="Search by category..."
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
+          className="mb-5 w-full border-b-2 border-b-orange-500 bg-transparent text-center text-base font-light text-gray-400 focus:outline-none"
+        />
+        <button
+          type="button"
+          onClick={handleClick}
+          className="relative left-11 block w-3/4 rounded-md bg-orange-500 py-1"
+        >
+          Search
+        </button>
+      </div>
       {data && <QuoteCard quote={data.quote} author={data.author} />}
     </section>
   );

@@ -5,9 +5,9 @@ interface Props {
 
 function QuoteCard({ quote, author }: Props) {
   return (
-    <div className="quoteCard">
-      <p className="cardText">{quote}</p>
-      <p className="cardAuthor">{author}</p>
+    <div className="relative top-[45%] text-center text-white">
+      <p className="px-3 text-xl font-thin">&#34; {quote} &#34;</p>
+      <p className="pt-3 text-center font-extralight"> - {author}</p>
     </div>
   );
 }
